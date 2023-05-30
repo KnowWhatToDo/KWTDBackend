@@ -24,10 +24,12 @@ public class MenteeServices {
     public String createMENTEE(mentee mentee, String phone) throws InterruptedException, ExecutionException {
 
         List<String> mentorUIDs = getMentorUIDs();
-        System.out.println(mentorUIDs);
+        List<String> meetingUIDs = getMeetingUIDs();
 
         if (!isMentorUIDExists(mentorUIDs, mentee)) {
-            return "mentorUID not found";
+            return "mentorUID not found ";
+        } else if (!isMeetingUIDExists(meetingUIDs, mentee)) {
+            return "meetingUID not found";
         } else {
             ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("mentee_user").document(phone)
                     .set(mentee);
@@ -96,5 +98,36 @@ public class MenteeServices {
         }
 
         return mentorUIDs;
+    }
+
+    public List<String> getMeetingUIDs() {
+        List<String> meetingUIDs = new ArrayList<>();
+
+        // get doucment id of all mentors
+        ApiFuture<QuerySnapshot> future = dbFirestore.collection("meeting").get();
+        List<QueryDocumentSnapshot> documents;
+        try {
+            documents = future.get().getDocuments();
+            for (QueryDocumentSnapshot document : documents) {
+                meetingUIDs.add(document.getId());
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return meetingUIDs;
+    }
+
+    public boolean isMeetingUIDExists(List<String> meetingUIDs, mentee mentee) {
+        if (mentee.getMeetings() == null) {
+            return true; // Allow null meetings
+        }
+
+        for (String meetingUID : meetingUIDs) {
+            if (mentee.getMeetings().contains(meetingUID)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

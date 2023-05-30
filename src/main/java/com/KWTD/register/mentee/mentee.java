@@ -23,5 +23,6 @@ public class mentee {
     private List<String> questions;
     private List<String> answers;
     private List<String> mentors;
+    private List<String> meetings;
 
 }
