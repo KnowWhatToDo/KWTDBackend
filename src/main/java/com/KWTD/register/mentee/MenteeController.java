@@ -32,7 +32,7 @@ public class MenteeController {
         return menteeService.getMENTEE(mentee_phone);
     }
 
-    @PutMapping("/updatementee")g
+    @PutMapping("/updatementee")
     public String updateMENTEE(@RequestBody mentee mentee)
             throws InterruptedException, ExecutionError, ExecutionException {
         return menteeService.updateMENTEE(mentee, mentee.getPhone());
