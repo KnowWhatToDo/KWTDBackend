@@ -18,6 +18,6 @@ public class mentor {
     private String linkedin_url;
     private Boolean is_verified;
     private List<Experience> experiences;
-    private long wallet;
+    // private long wallet;
 
 }
