@@ -70,8 +70,13 @@ public class MenteeServices {
     }
 
     public boolean isMentorUIDExists(List<String> mentorUIDs, mentee mentee) {
+        System.out.println("mentee.getMentors(): " + mentee.getMentors().size());
         if (mentee.getMentors() == null) {
             return true; // Allow null mentors
+        }
+        // if len of mentorUIDs is 0, then return true
+        if (mentee.getMentors().size() == 0) {
+            return true;
         }
 
         for (String mentorUID : mentorUIDs) {
