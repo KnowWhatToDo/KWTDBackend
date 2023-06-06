@@ -127,6 +127,9 @@ public class MenteeServices {
         if (mentee.getMeetings() == null) {
             return true; // Allow null meetings
         }
+        if (mentee.getMeetings().size() == 0) {
+            return true;
+        }
 
         for (String meetingUID : meetingUIDs) {
             if (mentee.getMeetings().contains(meetingUID)) {
