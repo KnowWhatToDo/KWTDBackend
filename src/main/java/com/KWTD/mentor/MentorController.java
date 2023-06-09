@@ -21,27 +21,27 @@ public class MentorController {
         this.mentorService = mentorService;
     }
 
-    @PostMapping("/addmentor")
-    public String createMENTOR(@RequestBody Mentor mentor)
+    @PostMapping("/addMentor")
+    public String createMentor(@RequestBody Mentor mentor)
             throws InterruptedException, ExecutionError, ExecutionException {
-        return mentorService.createMENTOR(mentor, mentor.getPhone());
+        return mentorService.createMentor(mentor, mentor.getPhone());
     }
 
-    @GetMapping("/getmentor")
-    public Mentor getMENTOR(@RequestParam String phone)
+    @GetMapping("/getMentor")
+    public Mentor getMentor(@RequestParam String phone)
             throws InterruptedException, ExecutionError, ExecutionException {
-        return mentorService.getMENTOR(phone);
+        return mentorService.getMentor(phone);
     }
 
-    @PutMapping("/updatementor")
+    @PutMapping("/updateMentor")
     public String updateMENTOR(@RequestBody Mentor mentor)
             throws InterruptedException, ExecutionError, ExecutionException {
-        return mentorService.updateMENTOR(mentor, mentor.getPhone());
+        return mentorService.updateMentor(mentor, mentor.getPhone());
     }
 
-    @PutMapping("/deletementor")
-    public String deleteMENTOR(@RequestParam String phone) throws InterruptedException, ExecutionError {
-        return mentorService.deleteMENTOR(phone);
+    @PutMapping("/deleteMentor")
+    public String deleteMentor(@RequestParam String phone) throws InterruptedException, ExecutionError {
+        return mentorService.deleteMentor(phone);
     }
 
 }
