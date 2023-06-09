@@ -1,13 +1,12 @@
-package com.KWTD.register.mentor;
+package com.KWTD.mentor;
 
 import lombok.Getter;
 import lombok.Setter;
 import java.util.List;
-import java.time.LocalDate;
 
 @Getter
 @Setter
-public class mentor {
+public class Mentor {
     // Other properties
 
     private String phone;

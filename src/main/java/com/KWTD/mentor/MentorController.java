@@ -1,4 +1,4 @@
-package com.KWTD.register.mentor;
+package com.KWTD.mentor;
 
 import java.util.concurrent.ExecutionException;
 
@@ -22,19 +22,19 @@ public class MentorController {
     }
 
     @PostMapping("/addmentor")
-    public String createMENTOR(@RequestBody mentor mentor)
+    public String createMENTOR(@RequestBody Mentor mentor)
             throws InterruptedException, ExecutionError, ExecutionException {
         return mentorService.createMENTOR(mentor, mentor.getPhone());
     }
 
     @GetMapping("/getmentor")
-    public mentor getMENTOR(@RequestParam String phone)
+    public Mentor getMENTOR(@RequestParam String phone)
             throws InterruptedException, ExecutionError, ExecutionException {
         return mentorService.getMENTOR(phone);
     }
 
     @PutMapping("/updatementor")
-    public String updateMENTOR(@RequestBody mentor mentor)
+    public String updateMENTOR(@RequestBody Mentor mentor)
             throws InterruptedException, ExecutionError, ExecutionException {
         return mentorService.updateMENTOR(mentor, mentor.getPhone());
     }

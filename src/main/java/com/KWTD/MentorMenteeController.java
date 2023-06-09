@@ -1,7 +1,7 @@
-package com.KWTD.register;
+package com.KWTD;
 
-import com.KWTD.register.mentee.mentee;
-import com.KWTD.register.mentor.mentor;
+import com.KWTD.mentee.Mentee;
+import com.KWTD.mentor.Mentor;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
@@ -35,9 +35,9 @@ public class MentorMenteeController {
         DocumentReference documentReference = dbFirestore.collection("mentor_user").document(phoneNumber);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot document = future.get();
-        mentor mentor;
+        Mentor mentor;
         if (document.exists()) {
-            mentor = document.toObject(mentor.class);
+            mentor = document.toObject(Mentor.class);
             return true;
         } else {
             return false;
@@ -49,9 +49,9 @@ public class MentorMenteeController {
         DocumentReference documentReference = dbFirestore.collection("mentee_user").document(phoneNumber);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot document = future.get();
-        mentee mentee;
+        Mentee mentee;
         if (document.exists()) {
-            mentee = document.toObject(mentee.class);
+            mentee = document.toObject(Mentee.class);
             return true;
         } else {
             return false;

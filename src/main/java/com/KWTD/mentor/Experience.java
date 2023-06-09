@@ -1,6 +1,4 @@
-package com.KWTD.register.mentor;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+package com.KWTD.mentor;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

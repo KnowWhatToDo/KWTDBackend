@@ -1,4 +1,4 @@
-package com.KWTD.register.mentor;
+package com.KWTD.mentor;
 
 import java.util.concurrent.ExecutionException;
 import java.util.UUID;
@@ -19,7 +19,7 @@ public class MentorService {
 
     Firestore dbFirestore = FirestoreClient.getFirestore();
 
-    public String createMENTOR(mentor mentor, String phone) throws InterruptedException, ExecutionException {
+    public String createMENTOR(Mentor mentor, String phone) throws InterruptedException, ExecutionException {
 
         ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("mentor_user").document(phone)
                 .set(mentor);
@@ -27,13 +27,13 @@ public class MentorService {
     }
 
     // get mentor
-    public mentor getMENTOR(String phone) throws InterruptedException, ExecutionException {
+    public Mentor getMENTOR(String phone) throws InterruptedException, ExecutionException {
         DocumentReference documentReference = dbFirestore.collection("mentor_user").document(phone);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot document = future.get();
-        mentor mentor;
+        Mentor mentor;
         if (document.exists()) {
-            mentor = document.toObject(mentor.class);
+            mentor = document.toObject(Mentor.class);
             return mentor;
         } else {
             return null;
@@ -41,7 +41,7 @@ public class MentorService {
 
     }
 
-    public String updateMENTOR(mentor mentor, String phone) throws InterruptedException, ExecutionException {
+    public String updateMENTOR(Mentor mentor, String phone) throws InterruptedException, ExecutionException {
         ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("mentor_user").document(phone)
                 .set(mentor);
         return collectionApiFuture.get().getUpdateTime().toString();
