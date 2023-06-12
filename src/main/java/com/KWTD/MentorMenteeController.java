@@ -1,7 +1,5 @@
 package com.KWTD;
 
-import com.KWTD.mentee.Mentee;
-import com.KWTD.mentor.Mentor;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
@@ -17,11 +15,11 @@ public class MentorMenteeController {
     // make controller to find if the entered number is for a mentee or mentor by
     // searching in firebase
     @GetMapping("/search")
-    public String isMentorMentee(@RequestParam String phoneNumber) throws InterruptedException, ExecutionException {
+    public String isMentorMentee(@RequestParam String phone) throws InterruptedException, ExecutionException {
 
-        if (isMentor(phoneNumber)) {
+        if (isMentor(phone)) {
             return "mentor";
-        } else if (isMentee(phoneNumber)) {
+        } else if (isMentee(phone)) {
             return "mentee";
         } else {
             return "not found";
@@ -35,9 +33,9 @@ public class MentorMenteeController {
         DocumentReference documentReference = dbFirestore.collection("mentor_user").document(phoneNumber);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot document = future.get();
-        Mentor mentor;
+        // Mentor mentor;
         if (document.exists()) {
-            mentor = document.toObject(Mentor.class);
+            // mentor = document.toObject(Mentor.class);
             return true;
         } else {
             return false;
@@ -49,9 +47,9 @@ public class MentorMenteeController {
         DocumentReference documentReference = dbFirestore.collection("mentee_user").document(phoneNumber);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot document = future.get();
-        Mentee mentee;
+        // Mentee mentee;
         if (document.exists()) {
-            mentee = document.toObject(Mentee.class);
+            // mentee = document.toObject(Mentee.class);
             return true;
         } else {
             return false;

@@ -13,5 +13,6 @@ public class Mentor {
     private List<String> skills;
     private String email;
     private String linkedinUrl;
+    private float experience;
     private Boolean isVerified;
 }
