@@ -6,7 +6,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Mentor {
+public class Mentor implements Comparable<Mentor> {
     private String phone;
     private String name;
     private String collegeName;
@@ -15,4 +15,9 @@ public class Mentor {
     private String linkedinUrl;
     private float experience;
     private Boolean isVerified;
+    
+    @Override
+    public int compareTo(Mentor mentor) {
+        return Math.round(this.experience) - Math.round(mentor.getExperience());
+    }
 }
