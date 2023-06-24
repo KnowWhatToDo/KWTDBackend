@@ -2,10 +2,13 @@ package com.KWTD.mentor;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+
 import java.util.List;
 
 @Getter
 @Setter
+@ToString
 public class Mentor implements Comparable<Mentor> {
     private String phone;
     private String name;

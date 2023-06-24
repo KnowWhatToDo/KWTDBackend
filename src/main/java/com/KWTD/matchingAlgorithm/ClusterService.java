@@ -11,6 +11,7 @@ import java.util.concurrent.ExecutionException;
 import org.springframework.stereotype.Service;
 
 import com.KWTD.mentor.Mentor;
+import com.KWTD.mentor.MentorService;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.Firestore;
@@ -20,7 +21,7 @@ import com.google.firebase.cloud.FirestoreClient;
 
 
 @Service
-public class MatchService {
+public class ClusterService {
     
     Firestore database = FirestoreClient.getFirestore();
     
@@ -40,6 +41,37 @@ public class MatchService {
             System.out.println("Refer Class: DataFetch.java");            
         }
         return mentorList;
+    }
+
+    public List<Mentor> getClusterMentors(String clusterName){
+        List<String> mentorIDs = getClusterIds(clusterName);
+        List<Mentor> mentors = new ArrayList<>();
+        for(int i=0;i<mentorIDs.size();i++){
+            try {
+                mentors.add(new MentorService().getMentor(mentorIDs.get(i)));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+        return mentors;
+    }
+
+
+
+    public List<String> getClusterIds(String domain){
+        CollectionReference ref = database.collection("mentor_clusters");
+        List<String> mentorReferences = new ArrayList<String>();
+        try {
+            Map<String, Object> mentorIDs = ref.document(domain).get().get().getData();
+            mentorReferences = (List<String>) mentorIDs.get("mentor_ids");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return mentorReferences;
     }
 
     /**
@@ -65,9 +97,9 @@ public class MatchService {
         Collections.sort(mentors);
 
         List<String> clusterNames = getClusterNames(mentors); 
-        for(int i=0;i<clusterNames.size();i++){
-            System.out.println(clusterNames.get(i));
-        }
+        // for(int i=0;i<clusterNames.size();i++){
+        //     System.out.println(clusterNames.get(i));
+        // }
 
         
 
@@ -88,7 +120,7 @@ public class MatchService {
             }
         }
 
-        System.out.println(mentorLists);
+        // System.out.println(mentorLists);
 
         CollectionReference mentorClusterCollection = database
                                             .collection("mentor_clusters");
@@ -115,6 +147,7 @@ public class MatchService {
    /**
     * <pre> <h2>
      * Gets all uniquely possible cluster names from mentor data
+     * 
      * </h2> </pre>
      * @param mentors : {@code List<Mentor>}
      * @return {@code List<String>} which stores all unique cluster names
