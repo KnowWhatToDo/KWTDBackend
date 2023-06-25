@@ -2,12 +2,12 @@
 Backend API of KWTD - Know What To Do
 
 ## Implemented (Works with the app):
-- Mentee's onboarding system (Latest)
+- Mentee's onboarding system
+- Mentor's onboarding system 
+- algorithm (Will keep improving further over iterations)
 
 ## Todo:
-- Mentor's onboarding system (Currently working on)
-- algorithm
-- meeting system
+- meeting system (work for this week)
 - payments
 
 
