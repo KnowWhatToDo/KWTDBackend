@@ -42,13 +42,8 @@ public class MatchingController {
     }
 
     @GetMapping("/getMatch")
-    public String getMatch(@RequestParam String menteeNumber){
+    public Mentor getMatch(@RequestParam String menteeNumber){
         return new MatchingService().getMatch(menteeNumber);
     }
 
-
-    @GetMapping("/test")
-    public void getRes(){
-        System.out.println("called");
-    }
 }
