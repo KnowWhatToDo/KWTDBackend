@@ -52,15 +52,13 @@ public class MatchingService {
             numberOfMentees[i] = getNumberOfMentees(mentors.get(i).getPhone());
         }
 
-        
-        // if there are mentors with zero mentees
-        boolean hasZero = false;
         int min;
         
 
         // basic implementation, points system to be added on top of this
         if(mentee.getCollegeYear()!="Working"){
             min = numberOfMentees[0];
+            selectedMentor = mentors.get(0);
             for(int i=0;i<mentors.size();i++){
                 if(min < numberOfMentees[i]){
                     min = numberOfMentees[i];
@@ -69,6 +67,7 @@ public class MatchingService {
             }
         }else{
             min = numberOfMentees[numberOfMentees.length-1];
+            selectedMentor = mentors.get(mentors.size()-1);
             for(int i=mentors.size()-1;i>=0;i++){
                 if(min < numberOfMentees[i]){
                     min = numberOfMentees[i];
@@ -79,9 +78,11 @@ public class MatchingService {
         
         // updating details in mentee's profile
         List<String> selectedMentorUpdate = mentee.getMentors();
-        selectedMentorUpdate.add(selectedMentor.getPhone());
-        mentee.setMentors(selectedMentorUpdate);
-        MenteeServices.updateMentee(mentee);
+        if(!selectedMentorUpdate.contains(selectedMentor.getPhone())){
+            selectedMentorUpdate.add(selectedMentor.getPhone());
+            mentee.setMentors(selectedMentorUpdate);
+            MenteeServices.updateMentee(mentee);
+        }
 
 
         // add match in database
@@ -113,17 +114,16 @@ public class MatchingService {
     public void addMatch(String mentorNumber ,String menteeNumber){
        List<String> menteeList = new ArrayList<>(); 
         CollectionReference ref = database.collection("match");
-        Map<String, Object> data;
+        Map<String, Object> data = new HashMap<>();
         try {
             data = ref.document(mentorNumber).get().get().getData();
             if(data!=null){
                 menteeList = (List<String>) data.get("menteeList");
             }
-
             menteeList.add(menteeNumber);
             Map<String, List<String>> updatedData = new HashMap<>();
             updatedData.put("menteeList", menteeList);
-            ref.document(menteeNumber).set(updatedData);
+            ref.document(mentorNumber).set(updatedData);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
