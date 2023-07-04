@@ -15,27 +15,10 @@ public class MeetingController {
         this.meetingServices = meetingServices;
     }
 
-    @PostMapping("/addmeeting")
+    @PostMapping("/addMeeting")
     public String createMeeting(@RequestBody Meeting meeting)
             throws InterruptedException, ExecutionError, ExecutionException {
-        return meetingServices.createMeeting(meeting, meeting.getMentorNumber());
+        return meetingServices.createMeeting(meeting);
     }
 
-    @GetMapping("/getmeeting")
-    public Meeting getMeeting(@RequestParam("mentorNumber") String mentorNumber)
-            throws InterruptedException, ExecutionError, ExecutionException {
-        return meetingServices.getMeeting(mentorNumber);
-    }
-
-    @PutMapping("/updatemeeting")
-    public String updateMeeting(@RequestBody Meeting meeting)
-            throws InterruptedException, ExecutionError, ExecutionException {
-        return meetingServices.updateMeeting(meeting, meeting.getMentorNumber());
-    }
-
-    @DeleteMapping("/deletemeeting")
-    public String deleteMeeting(@RequestParam("mentorNumber") String mentorNumber)
-            throws InterruptedException, ExecutionError {
-        return meetingServices.deleteMeeting(mentorNumber);
-    }
 }

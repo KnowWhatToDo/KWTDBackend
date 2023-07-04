@@ -15,6 +15,7 @@ public class Mentor implements Comparable<Mentor> {
     private String collegeName;
     private List<String> skills;
     private String email;
+    private List<String> meetings;
     private String linkedinUrl;
     private float experience;
     private Boolean isVerified;
