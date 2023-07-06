@@ -21,13 +21,6 @@ public class MeetingService {
 
     public String createMeeting(Meeting meeting){
         String status = "";
-        /*Meeting meeting2 = new Meeting();
-        meeting2.setMeetingDate("2023-07-08");
-        meeting2.setMeetingLink("https://some_random_url.com/meeting_id");
-        meeting2.setMeetingTime("15:00");
-        meeting2.setMenteeNumber("N/A");
-        meeting2.setMentorNumber("5544332211");
-        status = meeting.equals(meeting2) == true? "true":"false";*/
         DocumentReference ref = database.collection("meetings")
                                 .document(meeting.getMentorNumber());
         try {
