@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Meeting {
+    private String meetingId;
     private String mentorNumber;
     private String menteeNumber;
     private String meetingLink;
@@ -25,11 +26,7 @@ public class Meeting {
 
         Meeting meeting = (Meeting) obj;
 
-        if(meeting.getMeetingDate().equals(this.meetingDate)
-        && meeting.getMeetingLink().equals(this.meetingLink)
-        && meeting.getMeetingTime().equals(this.meetingTime)
-        && meeting.getMenteeNumber().equals(this.menteeNumber)
-        && meeting.getMentorNumber().equals( this.mentorNumber)){
+        if(meeting.getMeetingId().equals(this.meetingId)){
             return true;
         }else{
             return false;

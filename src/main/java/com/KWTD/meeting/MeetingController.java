@@ -21,4 +21,10 @@ public class MeetingController {
         return meetingServices.createMeeting(meeting);
     }
 
+    @PostMapping("/updateMeeting")
+    public String updateMeeting(@RequestBody Meeting meeting)
+            throws InterruptedException, ExecutionError{
+        return meetingServices.updateMeeting(meeting);
+    }
+
 }
