@@ -41,7 +41,6 @@ public class MeetingService {
         try {
             DocumentSnapshot snapshot = ref.get().get();
             if(snapshot.exists()){
-                System.out.println("This sections");
                 MeetingList meetingList = snapshot.toObject(MeetingList.class);
                 if(meetingList.getSlots().contains(meeting)){
                     return "record-already-exists";
