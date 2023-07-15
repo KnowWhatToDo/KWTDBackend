@@ -1,4 +1,4 @@
-package com.KWTD.notifications;
+package com.KWTD.services;
 
 import org.springframework.stereotype.Service;
 
@@ -6,7 +6,6 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingException;
 import com.google.firebase.messaging.Message;
 import com.google.firebase.messaging.Notification;
-import com.google.firebase.messaging.Message.Builder;
 
 
 
@@ -20,7 +19,6 @@ public class NotificationService {
      * to whom notification is to be sent ...
      * or a group of users under a particular topic
      * @return if the notification was successfully sent or not
-     * 
      */
     public String sendNotification(String title, String body, String topic){
         String response = "unsuccessful";

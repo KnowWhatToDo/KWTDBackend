@@ -1,8 +1,9 @@
-package com.KWTD.mentor;
+package com.KWTD.services;
 
 import java.util.concurrent.ExecutionException;
 import org.springframework.stereotype.Service;
 
+import com.KWTD.models.Mentor;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;

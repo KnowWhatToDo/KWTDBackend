@@ -1,4 +1,4 @@
-package com.KWTD.matchingAlgorithm;
+package com.KWTD.services;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,8 +10,7 @@ import java.util.concurrent.ExecutionException;
 
 import org.springframework.stereotype.Service;
 
-import com.KWTD.mentor.Mentor;
-import com.KWTD.mentor.MentorService;
+import com.KWTD.models.Mentor;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.Firestore;

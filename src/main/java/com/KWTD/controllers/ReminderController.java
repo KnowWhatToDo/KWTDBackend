@@ -32,9 +32,10 @@ public class ReminderController {
      * For checking for meetings and sending reminders
      * an hour before one's scheduled meeting time
      */
-    @Scheduled(cron = "0 0 * * * *")
+    // @Scheduled(cron = "0 0 * * * *")
+    @Scheduled(fixedRate = 5000)
     public void sendReminder(){
-
+        System.out.println("listend meetings");
         DocumentReference dailyMeetings = database.collection("meetings+today")
                                                 .document(LocalDate.now().toString());
         

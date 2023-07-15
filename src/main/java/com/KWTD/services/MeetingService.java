@@ -1,4 +1,4 @@
-package com.KWTD.meeting;
+package com.KWTD.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.concurrent.ExecutionException;
 
 import org.springframework.stereotype.Service;
 
+import com.KWTD.models.Meeting;
+import com.KWTD.models.MeetingList;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
@@ -82,7 +84,7 @@ public class MeetingService {
                     meeting.setMeetingId(generateMeetingId(meeting));
                     meetings.set(index, meeting);
                     meetingList.setSlots(meetings);
-                    ApiFuture<WriteResult> res = ref.set(meetingList);
+                    ref.set(meetingList);
                     status = meeting.getMeetingId();
                 }else{
                     return "document-does-not-exist";

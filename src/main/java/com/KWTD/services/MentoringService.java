@@ -1,13 +1,12 @@
-package com.KWTD.mentoring;
+package com.KWTD.services;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import org.springframework.stereotype.Service;
 
+import com.KWTD.models.Mentoring;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
@@ -56,8 +55,8 @@ public class MentoringService {
     }
 
     public String deleteMENTORING(String mentor) {
-        ApiFuture<WriteResult> writeResult = dbFirestore.collection("mentoring").document(mentor).delete();
-        return "Document with ID " + mentor + " has been deleted";
+        dbFirestore.collection("mentoring").document(mentor).delete();
+        return "Document with ID " + mentor + " has been deleted at ";
     }
 
     public List<String> getMentorUIDs() {
