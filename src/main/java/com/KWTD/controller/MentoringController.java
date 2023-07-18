@@ -1,9 +1,13 @@
-package com.KWTD.mentoring;
+package com.KWTD.controller;
 
 import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+
+import com.KWTD.model.Mentoring;
+import com.KWTD.service.MentoringService;
 
 @RestController
 @RequestMapping("/mentoring")
